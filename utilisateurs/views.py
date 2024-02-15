@@ -47,6 +47,7 @@ def login_user(request):
 
 
 def register(request):
+    User = get_user_model()
     error = False
     message = ""
     if request.method == "POST":
