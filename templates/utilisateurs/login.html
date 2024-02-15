@@ -23,10 +23,10 @@
     <link rel="stylesheet" href="{% static 'dist/css/style.css' %}" />
     <title>Plateforme de gestion de projets</title>
   </head>
-  <body>
+  <body style="background-image: url('{% static "utilisateur/img/background.jpg"%}')">
     <section
       class="vh-100 bg-image"
-      style="background-color: #eee">
+      >
       <div class="mask d-flex align-items-center h-100 gradient-custom-3">
         <div class="container h-100">
           <div
@@ -36,7 +36,7 @@
               <div class="card" style="border-radius: 15px">
                 <div class="card-body p-5">
                   <h2 class="text-uppercase text-center mb-5" style="color: #193965">
-                    Connexion
+                    Connectez vous
                   </h2>
 
                   <form action="{% url 'login' %}" method="POST">
@@ -86,7 +86,7 @@
                         <div class="form-check">
                          <div class="col">
                           <!-- Simple link -->
-                        <a  href="{% url "register" %}" class="fw-bold" >S'inscrire</a>
+                        <a  href="{% url "register" %}" class="fw-bold" style="color: #193965">S'inscrire</a>
                       </div>
                     </div>
                 </div>

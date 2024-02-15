@@ -28,7 +28,14 @@ def login_user(request):
             auth_user = authenticate(username=user.username, password=password)
             if auth_user:
                 login(request, auth_user)
-                return redirect('home')
+                if user.chef_projet:
+                    return redirect('home')
+                elif user.gestionnaire_financier:
+                    return redirect('')
+                elif user.porteur_projet:
+                    return redirect('')
+                else:
+                    return redirect('')
             else:
                 print("mot de pass incorrecte")
         else:
