@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.validators import validate_email
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
@@ -19,6 +20,7 @@ import codecs
 # Create your views here.
 
 def login_user(request):
+    User = get_user_model()
     if request.method == "POST":
         email = request.POST.get('email', None)
         password = request.POST.get('password', None)
@@ -29,13 +31,13 @@ def login_user(request):
             if auth_user:
                 login(request, auth_user)
                 if user.chef_projet:
-                    return redirect('home')
+                    return redirect('chef')
                 elif user.gestionnaire_financier:
-                    return redirect('')
+                    return redirect('finance')
                 elif user.porteur_projet:
-                    return redirect('')
+                    return redirect('porteur')
                 else:
-                    return redirect('')
+                    return redirect('regie')
             else:
                 print("mot de pass incorrecte")
         else:
@@ -95,6 +97,18 @@ def register(request):
 @login_required(login_url='login')
 def home(request):
     return render(request, 'utilisateurs/admin.html', {})
+
+def chef(request):
+    return render(request,'utilisateurs/chef.html')
+
+def finance(request):
+    return render(request,'utilisateurs/finance.html')
+
+def porteur_projet(request):
+    return render(request,'utilisateurs/porteur.html')
+
+def regie(request):
+    return render(request,'utilisateurs/regie.html')
 
 
 def log_out(request):
